@@ -3,6 +3,8 @@ package fr.ensim.interop.eval.exo2.Client;
 import fr.ensim.interop.eval.exo2.Model.Plantation;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.List;
+
 public class ClientRest {
     public static void main(String[] args) {
         RestTemplate restTemplate = new RestTemplate();
@@ -17,14 +19,12 @@ public class ClientRest {
                                                             "tete");
         System.out.println("POST => " + plantation);
 
-        System.out.println("PUT BEGIN");
-        restTemplate.put(url + "/{id}", plantation, plantation.getId());
-        System.out.println("PUT END");
-
-        plantation = restTemplate.getForObject(url + "/{id}", Plantation.class, plantation.getId());
-
-        System.out.println("DELETE BEGIN");
-        restTemplate.delete(url + "/{id}", plantation.getId());
-        System.out.println("DELETE END");
+        if( plantation != null ) {
+            System.out.println("DELETE BEGIN");
+            restTemplate.delete(url + "/{id}", plantation.getId());
+            System.out.println("DELETE END");
+        } else {
+            System.out.println("Null object POST");
+        }
     }
 }

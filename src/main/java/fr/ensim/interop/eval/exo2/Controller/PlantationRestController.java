@@ -23,14 +23,14 @@ public class PlantationRestController {
 
 
     /**
-     * Création d'une plantation en POST
+     * Ajoute une plantation en POST
      * @param parcelle
      * @param nomCommun
      * @param famille
      * @return
      */
     @PostMapping("/plantations")
-    public ResponseEntity<Plantation> postPlantation(@RequestParam("parcelle") String parcelle,
+    public ResponseEntity<Plantation> ajouterPlantation(@RequestParam("parcelle") String parcelle,
                                                      @RequestParam("nomCommun") String nomCommun,
                                                      @RequestParam("famille") String famille) {
         if(StringUtils.isBlank(parcelle) || StringUtils.isBlank(nomCommun) || StringUtils.isBlank(famille))
@@ -43,33 +43,13 @@ public class PlantationRestController {
         plantation.setNomCommun(nomCommun);
         plantation.setFamille(famille);
 
+        System.out.println(plantation);
+
         fakeDb.put(plantation.getId(), plantation);
 
         URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").build(plantation.getId());
 
-        return ResponseEntity.created(location).build();
-    }
-
-    /**
-     * Ajoute une plantation
-     * @param id
-     * @param plantation
-     * @return
-     */
-    @PutMapping("/plantations/{id}")
-    public ResponseEntity<Plantation> ajouterPlantation(@PathVariable("id") @NotNull int id, @RequestBody @Valid Plantation plantation) {
-        if(fakeDb.containsKey(id)) {
-            plantation.setId(id);
-            fakeDb.put(id, plantation);
-
-            return ResponseEntity.ok().build();
-        } else {
-            plantation.setId(fakeSeq.incrementAndGet());
-            fakeDb.put(plantation.getId(), plantation);
-
-            URI location = ServletUriComponentsBuilder.fromCurrentRequest().build(plantation.getId());
-            return ResponseEntity.created(location).build();
-        }
+        return ResponseEntity.created(location).body(plantation);
     }
 
     /**
