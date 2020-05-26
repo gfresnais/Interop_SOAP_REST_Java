@@ -69,7 +69,7 @@
 			</plugin>
 
 			<!-- SOAP -->
-			<!--<plugin>
+			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<configuration>
@@ -90,7 +90,8 @@
 						<configuration>
 							<wsdlDirectory>src/main/resources</wsdlDirectory>
 							<wsdlFiles>
-								<wsdlFile>AvisService.wsdl</wsdlFile>
+								<!-- <wsdlFile>AvisService.wsdl</wsdlFile> -->
+								<wsdlFile>MessageService.wsdl</wsdlFile>
 							</wsdlFiles>
 							<vmArgs>
 								<vmArg>-Djavax.xml.accessExternalSchema=all</vmArg>
@@ -98,7 +99,7 @@
 						</configuration>
 					</execution>
 				</executions>
-			</plugin>-->
+			</plugin>
 			<!-- Fin SOAP -->
 		</plugins>
 	</build>

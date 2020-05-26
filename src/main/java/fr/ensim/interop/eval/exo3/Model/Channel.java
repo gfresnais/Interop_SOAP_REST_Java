@@ -3,16 +3,16 @@ package fr.ensim.interop.eval.exo3.Model;
 import java.util.List;
 
 public class Channel {
-    private int id;
+    private double id;
     private List<String> members;
     private String name;
     private String owner;
 
-    public int getId() {
+    public double getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(double id) {
         this.id = id;
     }
 
