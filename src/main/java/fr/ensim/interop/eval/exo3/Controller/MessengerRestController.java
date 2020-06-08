@@ -23,6 +23,9 @@ import java.net.URI;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
+/**
+ * INUTILISÉ
+ */
 @RestController
 public class MessengerRestController {
 

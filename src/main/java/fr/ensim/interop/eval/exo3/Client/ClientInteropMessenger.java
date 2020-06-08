@@ -90,16 +90,23 @@ public class ClientInteropMessenger {
 
     public static void main(String[] args) {
         String url = "https://ensim.flox.dev/";
-        String mail = "gallien.fresnais.etu@univ-lemans.fr";
-        String token = "XD0BQEdd";
+        String mail = "";
+        String token = "";
 
-        ClientInteropMessenger client = new ClientInteropMessenger(mail, token, url);
-
+        // Utils inside the loop
         String str = "";
         String mode = "";
         String channel = "";
 
         Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Entrez votre mail :");
+        mail = scanner.next();
+        System.out.print("Entrez votre token :");
+        token = scanner.next();
+
+        // New client using basicAuth
+        ClientInteropMessenger client = new ClientInteropMessenger(mail, token, url);
 
         // Entering ":q" breaks the loop and ends the app
         while ( !StringUtils.equals(str, ":q") ) {
